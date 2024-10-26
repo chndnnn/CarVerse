@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  :root {
+    --radius: 0.5rem
+  }
+}
+
+.animationtest{
+  animation-name: anime;
+  animation-duration: 0.5s;
+}
+
+@keyframes anime {
+  from{
+     width: 0px;
+  }
+to{
+    width: 10rem;
+}
+  
+}

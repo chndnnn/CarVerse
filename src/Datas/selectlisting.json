@@ -1,0 +1,47 @@
+{
+   "cars":["audi","bmw","jaguar"],
+   "carMakes":["maruti","landrover","lambo"],
+   "prices":["1200","2200","3300"],
+   "carTypes":[{
+    "sedan": {
+      "name": "Sedan",
+      "icon": "fa-car-side"  
+    },
+    "suv": {
+      "name": "SUV",
+      "icon": "fa-car" 
+    },
+    "coupe": {
+      "name": "Coupe",
+      "icon": "fa-car-alt"
+    },
+    "convertible": {
+      "name": "Convertible",
+      "icon": "fa-car-top" 
+    },
+    "truck": {
+      "name": "Truck",
+      "icon": "fa-truck" 
+    },
+    "van": {
+      "name": "Van",
+      "icon": "fa-shuttle-van" 
+    },
+    "hatchback": {
+      "name": "Hatchback",
+      "icon": "fa-car-rear"
+    },
+    "sportsCar": {
+      "name": "Sports Car",
+      "icon": "fa-racing-flag"  
+    },
+    "electric": {
+      "name": "Electric",
+      "icon": "fa-bolt"  
+    },
+    "hybrid": {
+      "name": "Hybrid",
+      "icon": "fa-leaf" 
+    }
+  }]
+}

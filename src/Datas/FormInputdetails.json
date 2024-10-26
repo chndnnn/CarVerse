@@ -1,0 +1,197 @@
+{
+    "carFields": [
+      {
+        "label": "Make",
+        "name": "make",
+        "type": "text",
+        "placeholder": "Enter car make",
+        "required": true
+      },
+      {
+        "label": "Model",
+        "name": "model",
+        "type": "text",
+        "placeholder": "Enter car model",
+        "required": true
+      },
+      {
+        "label": "Year",
+        "name": "year",
+        "type": "number",
+        "placeholder": "Enter year of manufacture",
+        "required": true,
+        "min": 1900,
+        "max": 2024
+      },
+      {
+        "label": "Color",
+        "name": "color",
+        "type": "text",
+        "placeholder": "Enter car color",
+        "required": false
+      },
+      {
+        "label": "Price",
+        "name": "price",
+        "type": "number",
+        "placeholder": "Enter price in USD",
+        "required": true,
+        "min": 0
+      },
+      {
+        "label": "Mileage",
+        "name": "mileage",
+        "type": "number",
+        "placeholder": "Enter mileage (km)",
+        "required": false,
+        "min": 0
+      },
+      {
+        "label": "Fuel Type",
+        "name": "fuelType",
+        "type": "select",
+        "options": [
+          "Petrol",
+          "Diesel",
+          "Electric",
+          "Hybrid",
+          "CNG"
+        ],
+        "required": true
+      },
+      {
+        "label": "Transmission",
+        "name": "transmission",
+        "type": "select",
+        "options": [
+          "Automatic",
+          "Manual",
+          "Semi-Automatic"
+        ],
+        "required": true
+      },
+      {
+        "label": "VIN",
+        "name": "vin",
+        "type": "text",
+        "placeholder": "Enter vehicle identification number",
+        "required": true
+      },
+      {
+        "label": "Engine Size",
+        "name": "engineSize",
+        "type": "number",
+        "placeholder": "Enter engine size in liters",
+        "required": false,
+        "min": 0
+      },
+      {
+        "label": "Drivetrain",
+        "name": "drivetrain",
+        "type": "select",
+        "options": [
+          "FWD (Front-Wheel Drive)",
+          "RWD (Rear-Wheel Drive)",
+          "AWD (All-Wheel Drive)",
+          "4WD (Four-Wheel Drive)"
+        ],
+        "required": false
+      },
+      {
+        "label": "Body Type",
+        "name": "bodyType",
+        "type": "select",
+        "options": [
+          "Sedan",
+          "SUV",
+          "Truck",
+          "Coupe",
+          "Convertible",
+          "Hatchback",
+          "Minivan"
+        ],
+        "required": true
+      },
+      {
+        "label": "Condition",
+        "name": "condition",
+        "type": "select",
+        "options": [
+          "New",
+          "Used",
+          "Certified Pre-Owned"
+        ],
+        "required": true
+      },
+      {
+        "label": "Description",
+        "name": "description",
+        "type": "textarea",
+        "placeholder": "Enter a brief description of the car",
+        "required": false
+      }
+    ],
+    "carCheck": [
+          {
+            "label": "Air Conditioning",
+            "value": "airConditioning"
+          },
+          {
+            "label": "Leather Seats",
+            "value": "leatherSeats"
+          },
+          {
+            "label": "Sunroof",
+            "value": "sunroof"
+          },
+          {
+            "label": "Bluetooth",
+            "value": "bluetooth"
+          },
+          {
+            "label": "Backup Camera",
+            "value": "backupCamera"
+          },
+          {
+            "label": "Parking Sensors",
+            "value": "parkingSensors"
+          },
+          {
+            "label": "Heated Seats",
+            "value": "heatedSeats"
+          },
+          {
+            "label": "Navigation System",
+            "value": "navigationSystem"
+          },
+          {
+            "label": "Anti-Lock Brakes",
+            "value": "antiLockBrakes"
+          },
+          {
+            "label": "Airbags",
+            "value": "airbags"
+          },
+          {
+            "label": "Traction Control",
+            "value": "tractionControl"
+          },
+          {
+            "label": "Lane Departure Warning",
+            "value": "laneDepartureWarning"
+          },
+          {
+            "label": "Blind Spot Monitoring",
+            "value": "blindSpotMonitoring"
+          },
+          {
+            "label": "Emergency Braking",
+            "value": "emergencyBraking"
+          }
+    ]
+  }
+
+  
+    
+  
+  
