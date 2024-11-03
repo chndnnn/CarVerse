@@ -72,7 +72,7 @@ const AddNewListing = ()=>{
         {data.carFields?.map((ele,index)=>{
           if(ele.type == "text" || ele.type == "number"){
             return <div key={index} className="flex flex-col w-[100%] " >
-             <label>{ele.label} {ele.required && <span className="text-red-500">*</span>}</label>
+             <label >{ele.label} {ele.required && <span className="text-red-500">*</span>}</label>
               <input className="w-[100%] border border-solid p-1 rounded" required={ele.required} placeholder={ele.placeholder} type={ele.type} onBlur={(e:any)=>setListingInfo((prev)=>({...prev,[ele.name]:e.target.value}))} />
               </div>
           }else if(ele.type == "select"){
@@ -110,7 +110,7 @@ const AddNewListing = ()=>{
            })}
         </div>
         <Separator className="col-span-2 border-1 bg-black"/>
-        <button type="submit" className="bg-black text-white hover:bg-slate-800 hover:shadow-xl rounded p-2">submit</button>
+        <button type="submit" className="bg-black mt-2 md:mt-0 text-white hover:bg-slate-800 hover:shadow-xl rounded p-2">submit</button>
       </div>
       </form>
     </div>

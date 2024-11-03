@@ -14,7 +14,7 @@ return <>
     <header className="flex items-center md:p-3 p-2 justify-between border border-solid bg-slate-100">
         <div className="md:hidden relative">
         <CgDetailsMore  className={`${sidebar?'text-blue-500':''}  h-[25px] w-[25px]`} onClick={()=>setSideBar((prev)=>!prev)} />
-        <div className={`${sidebar?'':'hidden'} z-20 rounded absolute top-9 left-[-15px] border border-solid bg-slate-700 border-green-500 h-48 w-40 animationtest`}>
+        <div className={`${sidebar?'':'hidden'} z-20 rounded absolute top-9 left-[-15px] border border-solid bg-neutral-800 h-48 w-40 animationtest`}>
         <ul className="font-serif text-white p-6">
         <Link to="/"><li className="p-1 cursor-pointer hover:scale-105 hover:text-blue-600 font-semibold">Home</li></Link>
             <li className="p-1 cursor-pointer hover:scale-105 hover:text-blue-600 font-semibold">Search</li>
