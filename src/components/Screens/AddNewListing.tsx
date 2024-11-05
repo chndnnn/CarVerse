@@ -11,9 +11,13 @@ import {
 import { Separator } from "./../ui/separator"
 import { db } from "./../../../Config/index" 
 import carListing from "./../../../Config/schema"
+import { useUser } from "@clerk/clerk-react"
 
 
 const AddNewListing = ()=>{
+
+  const { user } = useUser();
+  console.log(user)
   const [listingInfo,setListingInfo] = useState({
     make: "",
     model: "",
@@ -43,13 +47,14 @@ const AddNewListing = ()=>{
     laneDepartureWarning: false,
     blindSpotMonitoring: false,
     emergencyBraking: false,
+    userName:user?.fullName
   })
 
   async function onSubmitClick(e:any){
     e.preventDefault();
     console.log(listingInfo)
     try{
-       await db.insert(carListing).values(listingInfo);
+      //  await db.insert(carListing).values(listingInfo);
        console.log("data Saved successfully!!")
     }catch(e){
       console.log("Error : ",e)

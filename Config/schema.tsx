@@ -1,6 +1,7 @@
 import { boolean, integer, pgTable, serial, varchar } from "drizzle-orm/pg-core";
 
 const carListing = pgTable('carListing',{
+    userName:varchar("userName").notNull(),
     id: serial("id"),
     make: varchar("make").notNull(),
     model: varchar("model").notNull(),
