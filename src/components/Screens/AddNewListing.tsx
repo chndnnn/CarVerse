@@ -12,6 +12,7 @@ import { Separator } from "./../ui/separator"
 import { db } from "./../../../Config/index" 
 import carListing from "./../../../Config/schema"
 import { useUser } from "@clerk/clerk-react"
+import ImageComponent from "../component/imageComponent"
 
 
 const AddNewListing = ()=>{
@@ -115,7 +116,11 @@ const AddNewListing = ()=>{
            })}
         </div>
         <Separator className="col-span-2 border-1 bg-black"/>
+        <div className="col-span-2">
+        <ImageComponent />
+        </div>
         <button type="submit" className="bg-black mt-2 md:mt-0 text-white hover:bg-slate-800 hover:shadow-xl rounded p-2">submit</button>
+       
       </div>
       </form>
     </div>
