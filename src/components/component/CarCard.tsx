@@ -3,16 +3,22 @@ import { BsFillFuelPumpFill } from "react-icons/bs";
 import { IoMdSpeedometer } from "react-icons/io";
 import { GiGearStickPattern } from "react-icons/gi";
 import { GoLinkExternal } from "react-icons/go";
+import { MdDelete } from "react-icons/md";
 
 interface carCardInterface {
     car : any,
-    index : any
+    index : any,
+    showDeleteButton : boolean
 }
 
-const CarCard:React.FC<carCardInterface> = ({car})=>{
+const CarCard:React.FC<carCardInterface> = ({car,showDeleteButton})=>{
+
+    function onDeleteClick(){
+        console.log(car)
+    }
    return <>
-   <div className="md:border border-solid w-[98%] bg-gray-100 rounded-lg p-2">
-    <img src={car.image} alt="" className="rounded-lg"/>
+   <div className="md:border border-solid w-[98%] bg-gray-100 rounded-lg p-2 relative">
+    <img src={car.image} alt="" className="h-48 w-full rounded-lg"/>
     <h2 className="text-lg md:mb-2 font-bold text-center">{car.name}</h2>
     <Separator className="bg-blue-400"/>
     <div className="flex w-full justify-between p-1 mt-1">
@@ -34,6 +40,8 @@ const CarCard:React.FC<carCardInterface> = ({car})=>{
         <h2 className="font-bold">${car.price}</h2>
         <h2 className="flex items-center gap-1 text-blue-500">View Details <GoLinkExternal/></h2>
     </div>
+    {showDeleteButton && <MdDelete onClick={onDeleteClick} className="absolute top-[-5px] right-[-4px] cursor-pointer hover:scale-95 text-red-800 text-3xl"/>}
+   
    </div>
    </>
 

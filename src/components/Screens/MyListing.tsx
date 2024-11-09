@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom"
 import Nav from "../component/Nav"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { db } from "./../../../Config/index"
 import { useUser } from "@clerk/clerk-react"
 import carListing from "./../../../Config/schema"
 import { eq } from 'drizzle-orm';
+import CarCard from "../component/CarCard"
 
 const MyListing = ()=>{
     const { user } = useUser();
-    useEffect(()=>{
-        
+    let [cardata,setCarData] = useState([])
+    useEffect(()=>{  
         getData()
     },[])
 
@@ -19,16 +20,37 @@ const MyListing = ()=>{
         .select()
         .from(carListing).where(eq(carListing.userName,loggedInUser))
         console.log(existingCar)
+        setCarData(existingCar)
+   
     }
+    useEffect(()=>{
+         console.log(cardata)
+    },[cardata])
 
     return <div>
         <Nav/>
-        <div className="flex justify-between p-10 border border-solid border-green-500">
-            <h2 className="text-2xl">My Listing</h2>
+        <div className="flex justify-between p-10">
+            <h2 className="text-2xl">My Listing ({cardata.length})</h2>
            <Link to="/AddLsiting"> <button className="bg-blue-200 p-2 rounded hover:bg-blue-500 font-bold">+ Add New Listing</button></Link>
         </div>
         <div>
-
+            { 
+                cardata?.map((car,i)=>{
+                    const data = {
+                        id:car.id,
+                        image : car.carImages[0],
+                        name : car.make,
+                        miles : car.mileage,
+                        gearType : car.transmission,
+                        fuelType : car.fuelType,
+                        price : car.price
+                    }
+                    return <div key={i} className="grid md:grid-cols-4 p-2">
+                        <CarCard car={data} index={undefined} showDeleteButton={true}/>
+                        </div>
+                })
+            }
+        
         </div>
     </div>
 }
