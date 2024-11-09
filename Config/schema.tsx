@@ -1,8 +1,8 @@
-import { boolean, integer, pgTable, serial, varchar } from "drizzle-orm/pg-core";
+import { boolean, integer, jsonb, pgTable, serial, varchar,uniqueIndex } from "drizzle-orm/pg-core";
 
 const carListing = pgTable('carListing',{
-    userName:varchar("userName").notNull(),
-    id: serial("id"),
+    userName:varchar("userName"),
+    id: serial("id").primaryKey(),
     make: varchar("make").notNull(),
     model: varchar("model").notNull(),
     year: integer("year").notNull(),
@@ -11,7 +11,7 @@ const carListing = pgTable('carListing',{
     mileage: varchar("mileage").notNull(),
     fuelType: varchar("fuelType").notNull(),
     transmission: varchar("transmission").notNull(),
-    vin: varchar("vin").notNull(),
+    vin: varchar("vin").notNull().unique(),
     engineSize: integer("engineSize"),
     drivetrain: varchar("drivetrain").notNull(),
     bodyType: varchar("bodyType").notNull(),
@@ -31,6 +31,8 @@ const carListing = pgTable('carListing',{
     laneDepartureWarning: boolean("laneDepartureWarning"),
     blindSpotMonitoring: boolean("blindSpotMonitoring"),
     emergencyBraking: boolean("emergencyBraking"),
+    carImages: jsonb("carImages").default([]),
 })
+
 
 export default carListing

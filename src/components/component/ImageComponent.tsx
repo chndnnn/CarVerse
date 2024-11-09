@@ -1,15 +1,21 @@
-import { useState } from "react"
+import {  useEffect, useState } from "react"
 import { MdCancel } from "react-icons/md";
 
-const ImageComponent = ()=>{
+const ImageComponent = ({ getAllImages }: { getAllImages:any })=>{
 
     const [images,setImages] = useState<File[]>([]);
+   
+  
     
     function onChangeFile(e:any){
         for(let i=0 ; i<e.target.files.length ; i++){
             setImages((prev)=>[...prev,e.target.files[i]])
         }
     }
+
+    useEffect(()=>{
+        getAllImages(images)
+    },[images])
 
     function onCancleClick(e:any){
         setImages(images.filter((image)=>image!=e))
