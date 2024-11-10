@@ -4,6 +4,7 @@ import { IoMdSpeedometer } from "react-icons/io";
 import { GiGearStickPattern } from "react-icons/gi";
 import { GoLinkExternal } from "react-icons/go";
 import { MdDelete } from "react-icons/md";
+import ConfirmationModal from "./ConfirmationModal";
 
 interface carCardInterface {
     car : any,
@@ -40,7 +41,7 @@ const CarCard:React.FC<carCardInterface> = ({car,showDeleteButton})=>{
         <h2 className="font-bold">${car.price}</h2>
         <h2 className="flex items-center gap-1 text-blue-500">View Details <GoLinkExternal/></h2>
     </div>
-    {showDeleteButton && <MdDelete onClick={onDeleteClick} className="absolute top-[-5px] right-[-4px] cursor-pointer hover:scale-95 text-red-800 text-3xl"/>}
+    {showDeleteButton && <ConfirmationModal showDelete={true} data={"Do yo really want to delete this data"} onDeleteClick={onDeleteClick} ><MdDelete className="absolute top-[-5px] right-[-4px] cursor-pointer hover:scale-95 text-red-800 text-3xl"/></ConfirmationModal>}
    
    </div>
    </>
