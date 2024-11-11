@@ -6,11 +6,16 @@ interface ConfirmationModalInterface {
     onDeleteClick : any
     data:String
     showDelete?:boolean
+    closeModall?:boolean
 }
 
-const ConfirmationModal : React.FC<ConfirmationModalInterface> = ({children,onDeleteClick,data,showDelete})=>{
+const ConfirmationModal : React.FC<ConfirmationModalInterface> = ({children,onDeleteClick,data,showDelete,closeModall})=>{
 
     const [isOpen, setIsOpen] = useState(false);
+
+    if(closeModall){
+        setIsOpen(false); 
+    }
 
   function openModal() {
     setIsOpen(true);
