@@ -8,7 +8,7 @@ import ConfirmationModal from "./ConfirmationModal";
 import { db } from "./../../../Config/index" 
 import carListing from "./../../../Config/schema"
 import { eq } from 'drizzle-orm';
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 interface carCardInterface {
     car : any,
@@ -18,7 +18,7 @@ interface carCardInterface {
 
 const CarCard:React.FC<carCardInterface> = ({car,showDeleteButton})=>{
 
-
+    const modalRef = useRef(null);
     async function onDeleteClick(){
         await db.delete(carListing).where(eq(carListing.id,car.id))
     }
@@ -46,7 +46,7 @@ const CarCard:React.FC<carCardInterface> = ({car,showDeleteButton})=>{
         <h2 className="font-bold">${car.price}</h2>
         <h2 className="flex items-center gap-1 text-blue-500">View Details <GoLinkExternal/></h2>
     </div>
-    {showDeleteButton && <ConfirmationModal showDelete={true} closeModall={closeModal} data={"Do yo really want to delete this data"} onDeleteClick={onDeleteClick} ><MdDelete className="absolute top-[-5px] right-[-4px] cursor-pointer hover:scale-95 text-red-800 text-3xl"/></ConfirmationModal>}
+    {showDeleteButton && <ConfirmationModal showDelete={true} ref={modalRef}  data={"Do yo really want to delete this data"} onDeleteClick={onDeleteClick} ><MdDelete className="absolute top-[-5px] right-[-4px] cursor-pointer hover:scale-95 text-red-800 text-3xl"/></ConfirmationModal>}
    
    </div>
    </>

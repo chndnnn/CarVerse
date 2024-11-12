@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { forwardRef, useImperativeHandle, useState } from 'react';
 import ReactModal from 'react-modal';
 
 interface ConfirmationModalInterface {
@@ -9,13 +9,13 @@ interface ConfirmationModalInterface {
     closeModall?:boolean
 }
 
-const ConfirmationModal : React.FC<ConfirmationModalInterface> = ({children,onDeleteClick,data,showDelete,closeModall})=>{
+const ConfirmationModal:React.FC<ConfirmationModalInterface> = ({children,onDeleteClick,data,showDelete,closeModall})=>{
 
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-    if(closeModall){
+  if(closeModall){
         setIsOpen(false); 
-    }
+    } 
 
   function openModal() {
     setIsOpen(true);
@@ -32,12 +32,10 @@ const ConfirmationModal : React.FC<ConfirmationModalInterface> = ({children,onDe
         <div className='flex gap-2'>
         <button className='bg-green-600 text-white p-1 rounded-lg px-3'  onClick={closeModal}>Close</button>
         {showDelete && <button onClick={onDeleteClick} className='bg-red-600 text-white p-1 rounded-lg px-3'>Delete</button> }
-        
         </div>
       </ReactModal>
     </div>
   );
-
 }
 
 export default ConfirmationModal

@@ -33,7 +33,7 @@ const MyListing = ()=>{
             <h2 className="text-2xl">My Listing ({cardata.length})</h2>
            <Link to="/AddLsiting"> <button className="bg-blue-200 p-2 rounded hover:bg-blue-500 font-bold">+ Add New Listing</button></Link>
         </div>
-        <div>
+        <div className="grid grid-cols-4">
             { 
                 cardata?.map((car,i)=>{
                     const data = {
@@ -45,7 +45,7 @@ const MyListing = ()=>{
                         fuelType : car.fuelType,
                         price : car.price
                     }
-                    return <div key={i} className="grid md:grid-cols-4 p-2">
+                    return <div key={i} className="p-2 h-20">   
                         <CarCard car={data} index={undefined} showDeleteButton={true}/>
                         </div>
                 })
