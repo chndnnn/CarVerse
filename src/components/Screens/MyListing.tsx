@@ -10,22 +10,20 @@ import CarCard from "../component/CarCard"
 const MyListing = ()=>{
     const { user } = useUser();
     let [cardata,setCarData] = useState([])
+    const[loader,setLoader] = useState(true)
     useEffect(()=>{  
         getData()
     },[])
 
     async function getData(){
+        setLoader(true)
         const loggedInUser = user?.id
         const existingCar = await db
         .select()
         .from(carListing).where(eq(carListing.userName,loggedInUser))
-        console.log(existingCar)
         setCarData(existingCar)
-   
+        setLoader(false)  
     }
-    useEffect(()=>{
-         console.log(cardata)
-    },[cardata])
 
     return <div>
         <Nav/>
@@ -46,12 +44,13 @@ const MyListing = ()=>{
                         price : car.price
                     }
                     return <div key={i} className="p-2 h-20">   
-                        <CarCard car={data} index={undefined} showDeleteButton={true}/>
+                        <CarCard car={data} getData={getData} index={undefined} showDeleteButton={true}/>
                         </div>
                 })
             }
         
         </div>
+        {loader && <div>Loading...</div>}
     </div>
 }
 

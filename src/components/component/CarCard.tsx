@@ -13,14 +13,19 @@ import { useRef, useState } from "react";
 interface carCardInterface {
     car : any,
     index : any,
-    showDeleteButton : boolean
+    showDeleteButton : boolean,
+    getData:any
 }
 
-const CarCard:React.FC<carCardInterface> = ({car,showDeleteButton})=>{
+const CarCard:React.FC<carCardInterface> = ({car,showDeleteButton,getData})=>{
+    
+    const[loader,setLoader] = useState(false)
 
-    const modalRef = useRef(null);
     async function onDeleteClick(){
+        setLoader(true)
         await db.delete(carListing).where(eq(carListing.id,car.id))
+        await getData()
+        setLoader(false)
     }
    return <>
    <div className="md:border border-solid w-[98%] bg-gray-100 rounded-lg p-2 relative">
@@ -46,7 +51,7 @@ const CarCard:React.FC<carCardInterface> = ({car,showDeleteButton})=>{
         <h2 className="font-bold">${car.price}</h2>
         <h2 className="flex items-center gap-1 text-blue-500">View Details <GoLinkExternal/></h2>
     </div>
-    {showDeleteButton && <ConfirmationModal showDelete={true} ref={modalRef}  data={"Do yo really want to delete this data"} onDeleteClick={onDeleteClick} ><MdDelete className="absolute top-[-5px] right-[-4px] cursor-pointer hover:scale-95 text-red-800 text-3xl"/></ConfirmationModal>}
+    {showDeleteButton && <ConfirmationModal loader={loader} showDelete={true} data={"Do yo really want to delete this data"} onDeleteClick={onDeleteClick} ><MdDelete className="absolute top-[-5px] right-[-4px] cursor-pointer hover:scale-95 text-red-800 text-3xl"/></ConfirmationModal>}
    
    </div>
    </>

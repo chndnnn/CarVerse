@@ -53,6 +53,7 @@ const AddNewListing = () => {
 
   const { user } = useUser();
   const [allImages, setAllImages] = useState<File[]>([]);
+  const[loader,setLoader] = useState(true)
 
   const [listingInfo, setListingInfo] = useState<ListingInfo>({
     userName: user?.id,
@@ -102,8 +103,9 @@ const AddNewListing = () => {
   }
 
   useEffect(()=>{
-    console.log(listingInfo);
+    if(listingInfo.carImages.length>0){
     saveData()
+    }
   },[listingInfo.carImages])
 
   async function ontestButtonCLick() {

@@ -7,9 +7,10 @@ interface ConfirmationModalInterface {
     data:String
     showDelete?:boolean
     closeModall?:boolean
+    loader?:boolean
 }
 
-const ConfirmationModal:React.FC<ConfirmationModalInterface> = ({children,onDeleteClick,data,showDelete,closeModall})=>{
+const ConfirmationModal:React.FC<ConfirmationModalInterface> = ({children,onDeleteClick,data,showDelete,closeModall,loader})=>{
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -24,6 +25,12 @@ const ConfirmationModal:React.FC<ConfirmationModalInterface> = ({children,onDele
   function closeModal() {
     setIsOpen(false);
   }
+
+  async function onDeleteButtonClick (){
+    console.log("hii")
+   await onDeleteClick()
+    closeModal()
+  }
   return (
     <div>
       <button onClick={openModal}>{children}</button>
@@ -31,7 +38,7 @@ const ConfirmationModal:React.FC<ConfirmationModalInterface> = ({children,onDele
         <h2>{data}</h2>
         <div className='flex gap-2'>
         <button className='bg-green-600 text-white p-1 rounded-lg px-3'  onClick={closeModal}>Close</button>
-        {showDelete && <button onClick={onDeleteClick} className='bg-red-600 text-white p-1 rounded-lg px-3'>Delete</button> }
+        {showDelete && <button onClick={onDeleteButtonClick} className='bg-red-600 text-white p-1 rounded-lg px-3'>{loader?"Deleting..":"Delete"}</button> }
         </div>
       </ReactModal>
     </div>
