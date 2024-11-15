@@ -1,9 +1,9 @@
-import { forwardRef, useImperativeHandle, useState } from 'react';
+import { useState } from 'react';
 import ReactModal from 'react-modal';
 
 interface ConfirmationModalInterface {
     children : any
-    onDeleteClick : any
+    onDeleteClick? : any
     data:String
     showDelete?:boolean
     closeModall?:boolean

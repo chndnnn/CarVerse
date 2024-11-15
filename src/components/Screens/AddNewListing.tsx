@@ -12,8 +12,9 @@ import { Separator } from "./../ui/separator"
 import { db } from "./../../../Config/index" 
 import carListing from "./../../../Config/schema"
 import { useUser } from "@clerk/clerk-react"
-import ImageComponent from "../component/imageComponent"
 import axios from 'axios'
+import ImageComponent from "../component/ImageComponent"
+import ConfirmationModal from "../component/ConfirmationModal"
 
 // Define a type for the state shape
 interface ListingInfo {
@@ -53,7 +54,8 @@ const AddNewListing = () => {
 
   const { user } = useUser();
   const [allImages, setAllImages] = useState<File[]>([]);
-  const[loader,setLoader] = useState(true)
+  const[loader,setLoader] = useState(false)
+  const[showConfirmationWindow,setShowConfirmationWindow] = useState(false)
 
   const [listingInfo, setListingInfo] = useState<ListingInfo>({
     userName: user?.id,
@@ -90,16 +92,51 @@ const AddNewListing = () => {
 
   async function onSubmitClick(e: any) {
     e.preventDefault();
-    await ontestButtonCLick();   
+    await ontestButtonCLick();
+    setShowConfirmationWindow(true)
+    setListingInfo({
+      userName: user?.id,
+      make: "",
+      model: "",
+      year: 0, // Ensure numerical fields are initialized as numbers
+      color: "",
+      price: 0,
+      mileage: "",
+      fuelType: "",
+      transmission: "",
+      vin: "",
+      engineSize: 0, // Numerical field
+      drivetrain: "",
+      bodyType: "",
+      condition: "",
+      description: "",
+      airConditioning: false,
+      leatherSeats: false,
+      sunroof: false,
+      bluetooth: false,
+      backupCamera: false,
+      parkingSensors: false,
+      heatedSeats: false,
+      navigationSystem: false,
+      antiLockBrakes: false,
+      airbags: false,
+      tractionControl: false,
+      laneDepartureWarning: false,
+      blindSpotMonitoring: false,
+      emergencyBraking: false,
+      carImages: []  // Now properly typed as an empty array of strings
+    })
   }
 
   async function saveData(){
+    setLoader(true)
     try {
        await db.insert(carListing).values(listingInfo);
       console.log("data Saved successfully!!");
     } catch (e) {
       console.log("Error : ", e);
     }
+    setLoader(false)
   }
 
   useEffect(()=>{
@@ -206,9 +243,10 @@ const AddNewListing = () => {
           <div className="col-span-2">
             <ImageComponent getAllImages={getAllImages} />
           </div>
-          <button type="submit" className="bg-black mt-2 md:mt-0 text-white hover:bg-slate-800 hover:shadow-xl rounded p-2">submit</button>
+          <button type="submit" className="bg-black mt-2 md:mt-0 text-white hover:bg-slate-800 hover:shadow-xl rounded p-2">{loader?"Submiting..":"submit"}</button>
         </div>
       </form>
+      {showConfirmationWindow && <ConfirmationModal/>}
     </div>
   );
 }
