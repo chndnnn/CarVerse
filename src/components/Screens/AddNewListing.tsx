@@ -55,7 +55,7 @@ const AddNewListing = () => {
   const { user } = useUser();
   const [allImages, setAllImages] = useState<File[]>([]);
   const[loader,setLoader] = useState(false)
-  const[showConfirmationWindow,setShowConfirmationWindow] = useState(false)
+  const [removeAllImage,setRemoveAllImage]=useState(false)
 
   const [listingInfo, setListingInfo] = useState<ListingInfo>({
     userName: user?.id,
@@ -93,39 +93,6 @@ const AddNewListing = () => {
   async function onSubmitClick(e: any) {
     e.preventDefault();
     await ontestButtonCLick();
-    setShowConfirmationWindow(true)
-    setListingInfo({
-      userName: user?.id,
-      make: "",
-      model: "",
-      year: 0, // Ensure numerical fields are initialized as numbers
-      color: "",
-      price: 0,
-      mileage: "",
-      fuelType: "",
-      transmission: "",
-      vin: "",
-      engineSize: 0, // Numerical field
-      drivetrain: "",
-      bodyType: "",
-      condition: "",
-      description: "",
-      airConditioning: false,
-      leatherSeats: false,
-      sunroof: false,
-      bluetooth: false,
-      backupCamera: false,
-      parkingSensors: false,
-      heatedSeats: false,
-      navigationSystem: false,
-      antiLockBrakes: false,
-      airbags: false,
-      tractionControl: false,
-      laneDepartureWarning: false,
-      blindSpotMonitoring: false,
-      emergencyBraking: false,
-      carImages: []  // Now properly typed as an empty array of strings
-    })
   }
 
   async function saveData(){
@@ -133,6 +100,40 @@ const AddNewListing = () => {
     try {
        await db.insert(carListing).values(listingInfo);
       console.log("data Saved successfully!!");
+      setListingInfo({
+        userName: user?.id,
+        make: "",
+        model: "",
+        year: 0,
+        color: "",
+        price: 0,
+        mileage: "",
+        fuelType: "",
+        transmission: "",
+        vin: "",
+        engineSize: 0,
+        drivetrain: "",
+        bodyType: "",
+        condition: "",
+        description: "",
+        airConditioning: false,
+        leatherSeats: false,
+        sunroof: false,
+        bluetooth: false,
+        backupCamera: false,
+        parkingSensors: false,
+        heatedSeats: false,
+        navigationSystem: false,
+        antiLockBrakes: false,
+        airbags: false,
+        tractionControl: false,
+        laneDepartureWarning: false,
+        blindSpotMonitoring: false,
+        emergencyBraking: false,
+        carImages: [],
+      });
+      setAllImages([]);
+      setRemoveAllImage(true)
     } catch (e) {
       console.log("Error : ", e);
     }
@@ -192,8 +193,9 @@ const AddNewListing = () => {
                     className="w-[100%] border border-solid p-1 rounded"
                     required={ele.required}
                     placeholder={ele.placeholder}
+                    value={listingInfo[ele.name]}
                     type={ele.type}
-                    onBlur={(e: any) => setListingInfo((prev) => ({ ...prev, [ele.name]: e.target.value }))}
+                    onChange={(e: any) => setListingInfo((prev) => ({ ...prev, [ele.name]: e.target.value }))}
                   />
                 </div>
               );
@@ -201,7 +203,7 @@ const AddNewListing = () => {
               return (
                 <div key={index} className="flex flex-col w-[100%]">
                   <label>{ele.label} {ele.required && <span className="text-red-500">*</span>}</label>
-                  <Select required={ele.required} onValueChange={(e: any) => (setListingInfo((prev) => ({ ...prev, [ele.name]: e })))}>
+                  <Select value={listingInfo[ele.name]} required={ele.required} onValueChange={(e: any) => (setListingInfo((prev) => ({ ...prev, [ele.name]: e })))}>
                     <SelectTrigger className="w-[100%]">
                       <SelectValue placeholder={ele.name} />
                     </SelectTrigger>
@@ -220,8 +222,9 @@ const AddNewListing = () => {
                   <textarea
                     required={ele.required}
                     placeholder={ele.placeholder}
+                    value={listingInfo[ele.name]}
                     className="border border-solid rounded w-[100%] p-1"
-                    onBlur={(e: any) => setListingInfo((prev) => ({ ...prev, [ele.name]: e.target.value }))}
+                    onChange={(e: any) => setListingInfo((prev) => ({ ...prev, [ele.name]: e.target.value }))}
                   />
                 </div>
               );
@@ -233,7 +236,7 @@ const AddNewListing = () => {
             {data.carCheck.map((ele, index) => {
               return (
                 <div key={index}>
-                  <input className="md:mr-1 cursor-pointer" type="checkbox" onChange={(e) => onCheckBoxChecked(e, ele)} />
+                  <input className="md:mr-1 cursor-pointer" type="checkbox" checked={listingInfo[ele.value]} onChange={(e) => onCheckBoxChecked(e, ele)} />
                   <label>{ele.label}</label>
                 </div>
               );
@@ -241,12 +244,11 @@ const AddNewListing = () => {
           </div>
           <Separator className="col-span-2 border-1 bg-black" />
           <div className="col-span-2">
-            <ImageComponent getAllImages={getAllImages} />
+            <ImageComponent removeAllImage={removeAllImage} getAllImages={getAllImages} />
           </div>
           <button type="submit" className="bg-black mt-2 md:mt-0 text-white hover:bg-slate-800 hover:shadow-xl rounded p-2">{loader?"Submiting..":"submit"}</button>
         </div>
       </form>
-      {showConfirmationWindow && <ConfirmationModal/>}
     </div>
   );
 }
