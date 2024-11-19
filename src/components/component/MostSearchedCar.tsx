@@ -41,7 +41,7 @@ const MostSearchedCar = ()=>{
         fuelType : car.fuelType,
         price : car.price
     }
-         return <CarouselItem key={index} className='md:basis-1/4 basis-1/1'> <CarCard car={data} index={index} /></CarouselItem>
+         return <CarouselItem key={index} className=' w-full md:basis-1/4 basis-1/1'> <CarCard car={data} index={index} /></CarouselItem>
      })}
   </CarouselContent>
   <CarouselPrevious />

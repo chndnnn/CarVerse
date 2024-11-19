@@ -8,7 +8,8 @@ import ConfirmationModal from "./ConfirmationModal";
 import { db } from "./../../../Config/index" 
 import carListing from "./../../../Config/schema"
 import { eq } from 'drizzle-orm';
-import { useRef, useState } from "react";
+import {  useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface carCardInterface {
     car ?: any,
@@ -20,6 +21,7 @@ interface carCardInterface {
 const CarCard:React.FC<carCardInterface> = ({car,showDeleteButton,getData})=>{
     
     const[loader,setLoader] = useState(false)
+    const nav = useNavigate()
 
     async function onDeleteClick(){
         setLoader(true)
@@ -28,11 +30,11 @@ const CarCard:React.FC<carCardInterface> = ({car,showDeleteButton,getData})=>{
         setLoader(false)
     }
 
-    function onViewDetailsClick(id){
-      alert(id)
+    function onViewDetailsClick(id:Number){
+        nav(`/CarDetailsScreen/${id}`)
     }
    return <>
-   <div className="md:border border-solid w-[98%] bg-gray-100 rounded-lg p-2 relative">
+   <div className=" w-[98%] bg-gray-100 rounded-lg p-2 relative">
     <img src={car.image} alt="" className="h-48 w-full rounded-lg"/>
     <h2 className="text-lg md:mb-2 font-bold text-center">{car.name}</h2>
     <Separator className="bg-blue-400"/>

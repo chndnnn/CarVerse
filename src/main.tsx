@@ -8,6 +8,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import MyListing from './components/Screens/MyListing.tsx'
 import ProtectedComp from './Authentication/ProtectedComp.tsx'
 import AddNewListing from './components/Screens/AddNewListing.tsx'
+import CarDetailsScreen from './components/Screens/CarDetailsScreen.tsx'
 
 
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path:'/AddLsiting',
     element : <ProtectedComp element={<AddNewListing/>}/>
+  },
+  {
+    path:'/CarDetailsScreen/:id',
+    element : <CarDetailsScreen/> 
   },
   {
     path:'*',
