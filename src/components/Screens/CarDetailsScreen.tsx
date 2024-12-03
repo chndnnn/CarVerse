@@ -12,6 +12,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { MdLocalOffer } from "react-icons/md";
 import { BiCategoryAlt } from "react-icons/bi";
 import CarDetailSpecifications from "../component/CarDetailSpecifications";
+import FinanceCalculator from "../component/FinanceCalculator";
 
 const CarDetailsScreen = ()=>{
     
@@ -38,7 +39,7 @@ const CarDetailsScreen = ()=>{
     return<>
     <Nav/>
     <div>
-        <div className="border border-green-500 p-10">
+        <div className="p-10">
             <div className="p-2">
             <h1 className="font-bold text-3xl">{carData.make}</h1>
             <p>{carData.model}</p>
@@ -61,6 +62,8 @@ const CarDetailsScreen = ()=>{
   <CarouselPrevious className="ml-[60px]"/>
   <CarouselNext className="mr-[60px]"/>
 </Carousel> 
+
+<FinanceCalculator/>
 </div>
 <div className="w-[40%] flex flex-col gap-2 items-center">
    <div className="border shadow-lg w-[80%] h-[120px] flex flex-col px-5 rounded-lg py-20 justify-center">
@@ -75,6 +78,7 @@ const CarDetailsScreen = ()=>{
     </div>
    
    </div>
+   
 </div>
             </div>
         </div>
