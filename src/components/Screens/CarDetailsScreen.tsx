@@ -13,6 +13,7 @@ import { MdLocalOffer } from "react-icons/md";
 import { BiCategoryAlt } from "react-icons/bi";
 import CarDetailSpecifications from "../component/CarDetailSpecifications";
 import FinanceCalculator from "../component/FinanceCalculator";
+import OwnerDetails from "../component/OwnerDetails";
 
 const CarDetailsScreen = ()=>{
     
@@ -40,17 +41,17 @@ const CarDetailsScreen = ()=>{
     <Nav/>
     <div>
         <div className="p-10">
-            <div className="p-2">
+            <div className="p-2 ">
             <h1 className="font-bold text-3xl">{carData.make}</h1>
             <p>{carData.model}</p>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 ">
                 <div className="flex justify-center items-center bg-blue-100 text-blue-500 font-semibold rounded-full gap-2 p-2"><CiCalendarDate/>{carData.year}</div>
                 <div className="flex justify-center items-center bg-blue-100 text-blue-500 font-semibold rounded-full gap-2 p-2"><IoSpeedometerOutline/>{carData.mileage}</div>
                 <div className="flex justify-center items-center bg-blue-100 text-blue-500 font-semibold rounded-full gap-2 p-2"><GiGearStickPattern/>{carData.transmission}</div>
                 <div className="flex justify-center items-center bg-blue-100 text-blue-500 font-semibold rounded-full gap-2 p-2"><LuFuel/>{carData.fuelType}</div>
             </div>
-            <div className="mt-2 flex">
+            <div className="mt-2 flex  border border-red-500">
                 <div className="w-[60%]">
             <Carousel className="border border-solid rounded overflow-hidden w-full h-[400px]">
   <CarouselContent>
@@ -75,9 +76,11 @@ const CarDetailsScreen = ()=>{
     <h1 className="text-2xl font-bold px-5">Specification</h1>
     <div className="px-6 mt-2">
        <CarDetailSpecifications carData={carData}/>
-    </div>
-   
+    </div>   
    </div>
+   <div className="border border-green-500 mt-4 h-full p-2 w-[80%] flex justify-center items-center">
+    <OwnerDetails/>
+    </div>
    
 </div>
             </div>
