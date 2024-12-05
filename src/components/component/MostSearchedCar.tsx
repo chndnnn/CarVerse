@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import {carlist} from './../../Datas/mostSearchCar'
 import CarCard from './CarCard'
 import {
     Carousel,

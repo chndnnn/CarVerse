@@ -17,47 +17,47 @@ const CarDetailSpecifications:React.FC<CarDetailSpecificationsInterface> = ({car
     let data = [
         {
             name : "Category",
-            value:carData.bodyType,
+            value:carData?.bodyType,
             image : <BiCategoryAlt/>
         },
         {
             name : "Mileage",
-            value:carData.mileage,
+            value:carData?.mileage,
             image : <BsFillFuelPumpDieselFill/>
         },
         {
             name : "Transmission",
-            value:carData.transmission,
+            value:carData?.transmission,
             image : <GiGearStickPattern />
         },
         {
             name : "Engine Size",
-            value:carData.engineSize,
+            value:carData?.engineSize,
             image : <SiGoogleearthengine />
         },
         {
             name : "Drive Train",
-            value:carData.drivetrain,
+            value:carData?.drivetrain,
             image : <MdTerrain />
         },
         {
             name : "Body Type",
-            value:carData.bodyType,
+            value:carData?.bodyType,
             image : <IoMdBody />
         },
         {
             name : "Condition",
-            value:carData.condition,
+            value:carData?.condition,
             image : <VscDebugBreakpointConditional />
         },
         {
             name : "Color",
-            value:carData.color,
+            value:carData?.color,
             image : <IoIosColorPalette />
         },
         {
             name : "Fuel Type",
-            value:carData.fuelType,
+            value:carData?.fuelType,
             image : <BsFuelPumpFill />
         }
 
