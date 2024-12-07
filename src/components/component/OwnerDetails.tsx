@@ -1,6 +1,6 @@
 const OwnerDetails = ()=>{
 
-   return <div className="border border-red-500 w-full p-5" >
+   return <div className="w-full p-5" >
     <div className="flex">
         <div className="border">
         <h1 className="text-2xl font-bold">Owner/Deals</h1>

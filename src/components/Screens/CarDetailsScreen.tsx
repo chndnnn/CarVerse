@@ -24,6 +24,7 @@ const CarDetailsScreen = ()=>{
 
     useEffect(()=>{
         getData()
+        window.scrollTo({top:0,behavior:"smooth"})
     },[id])
 
     async function getData(){
@@ -52,8 +53,8 @@ const CarDetailsScreen = ()=>{
                 <div className="flex justify-center items-center bg-blue-100 text-blue-500 font-semibold rounded-full gap-2 p-2"><GiGearStickPattern/>{carData?.transmission}</div>
                 <div className="flex justify-center items-center bg-blue-100 text-blue-500 font-semibold rounded-full gap-2 p-2"><LuFuel/>{carData?.fuelType}</div>
             </div>
-            <div className="mt-2 flex">
-                <div className="w-[60%] ">
+            <div className="mt-2 flex md:flex-row flex-col">
+                <div className="md:w-[60%] ">
             <Carousel className="border border-solid rounded overflow-hidden w-full shadow-lg h-[400px]">
   <CarouselContent>
     {carData?.carImages?.map((car,index)=>{
@@ -67,19 +68,19 @@ const CarDetailsScreen = ()=>{
 
 <FinanceCalculator/>
 </div>
-<div className="w-[40%] flex flex-col gap-2 items-center">
-   <div className="border shadow-lg w-[80%] h-[120px] flex flex-col px-5 rounded-lg py-20 justify-center">
+<div className="md:w-[40%] flex flex-col gap-2 items-center mt-2 md:mt-0">
+   <div className="border shadow-lg md:w-[80%] w-full h-[120px] flex flex-col px-5 rounded-lg py-20 justify-center">
     <h1>Our Price</h1>
     <h1 className="text-3xl font-bold">${carData?.price}</h1>
     <button className="flex justify-center items-center bg-blue-600 p-1 px-5 rounded text-white"><span><MdLocalOffer/></span>Make an Offer Price</button>
    </div>
-   <div className="border shadow-lg w-[80%]  flex flex-col rounded-lg">
+   <div className="border shadow-lg md:w-[80%]  flex flex-col rounded-lg">
     <h1 className="text-2xl font-bold px-5">Specification</h1>
     <div className="px-6 mt-2">
        <CarDetailSpecifications carData={carData}/>
     </div>   
    </div>
-   <div className="rounded border mt-4 h-full p-2 w-[80%] flex justify-center items-center shadow-lg">
+   <div className="rounded border w-full mt-4 h-full p-2 md:w-[80%] flex justify-center items-center shadow-lg">
     <OwnerDetails/>
     </div>
    
