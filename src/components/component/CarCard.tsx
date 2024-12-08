@@ -10,6 +10,7 @@ import carListing from "./../../../Config/schema"
 import { eq } from 'drizzle-orm';
 import {  useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AiFillEdit } from "react-icons/ai";
 
 interface carCardInterface {
     car ?: any,
@@ -57,7 +58,10 @@ const CarCard:React.FC<carCardInterface> = ({car,showDeleteButton,getData})=>{
         <h2 className="font-bold">${car.price}</h2>
         <h2 onClick={()=>onViewDetailsClick(car.id)} className="cursor-pointer flex items-center gap-1 text-blue-500">View Details <GoLinkExternal/></h2>
     </div>
-    {showDeleteButton && <div className="absolute top-[-5px] right-[-4px] cursor-pointer hover:scale-95 text-red-800 text-3xl"><ConfirmationModal loader={loader} showDelete={true} data={"Do yo really want to delete this data"} onDeleteClick={onDeleteClick} ><MdDelete /></ConfirmationModal></div>}
+    
+    {showDeleteButton && <div className="bg-black px-1 rounded-full absolute top-[-5px] right-[-4px] cursor-pointer hover:scale-95 text-red-600 text-xl"><ConfirmationModal loader={loader} showDelete={true} data={"Do yo really want to delete this data"} onDeleteClick={onDeleteClick} ><MdDelete /></ConfirmationModal></div>}
+    {showDeleteButton && <div className="bg-black px-1 rounded-full absolute top-[-5px] right-7  cursor-pointer hover:scale-95 text-green-500 text-xl"><ConfirmationModal loader={loader} showDelete={true} data={"Do yo really want to delete this data"} onDeleteClick={onDeleteClick} ><AiFillEdit /></ConfirmationModal></div>}
+  
    </div>
    
    </>
