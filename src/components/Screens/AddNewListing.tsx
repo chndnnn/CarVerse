@@ -14,7 +14,8 @@ import carListing from "./../../../Config/schema"
 import { useUser } from "@clerk/clerk-react"
 import axios from 'axios'
 import ImageComponent from "../component/ImageComponent"
-import ConfirmationModal from "../component/ConfirmationModal"
+import { useLocation } from "react-router-dom"
+import { eq } from "drizzle-orm"
 
 // Define a type for the state shape
 interface ListingInfo {
@@ -56,6 +57,8 @@ const AddNewListing = () => {
   const [allImages, setAllImages] = useState<File[]>([]);
   const[loader,setLoader] = useState(false)
   const [removeAllImage,setRemoveAllImage]=useState(false)
+  const location = useLocation();
+  const { fromEdit , id} = location.state || {};
 
   const [listingInfo, setListingInfo] = useState<ListingInfo>({
     userName: user?.id,
@@ -89,6 +92,48 @@ const AddNewListing = () => {
     emergencyBraking: false,
     carImages: []  // Now properly typed as an empty array of strings
   });
+
+  useEffect(()=>{
+    getData()
+  },[fromEdit])
+
+  async function getData(){
+    const existingCar = await db
+    .select()
+    .from(carListing).where(eq(carListing.id,id))
+    console.log(existingCar[0])
+    setListingInfo({
+      make: existingCar[0].make,
+      model: existingCar[0].model,
+      year: existingCar[0].year,
+      color: existingCar[0].color,
+      price: existingCar[0].price,
+      mileage: existingCar[0].mileage,
+      fuelType: existingCar[0].fuelType,
+      transmission: existingCar[0].transmission,
+      vin: existingCar[0].vin,
+      engineSize: existingCar[0].engineSize,
+      drivetrain: existingCar[0].drivetrain,
+      bodyType: existingCar[0].bodyType,
+      condition: existingCar[0].condition,
+      description: existingCar[0].description,
+      airConditioning: existingCar[0].airConditioning,
+      leatherSeats: existingCar[0].leatherSeats,
+      sunroof: existingCar[0].sunroof,
+      bluetooth: existingCar[0].bluetooth,
+      backupCamera: existingCar[0].backupCamera,
+      parkingSensors: existingCar[0].parkingSensors,
+      heatedSeats: existingCar[0].heatedSeats,
+      navigationSystem: existingCar[0].navigationSystem,
+      antiLockBrakes: existingCar[0].antiLockBrakes,
+      airbags: existingCar[0].airbags,
+      tractionControl: existingCar[0].tractionControl,
+      laneDepartureWarning: existingCar[0].laneDepartureWarning,
+      blindSpotMonitoring: existingCar[0].blindSpotMonitoring,
+      emergencyBraking: existingCar[0].emergencyBraking,
+      carImages:existingCar[0].carImages,
+    });
+}
 
   async function onSubmitClick(e: any) {
     e.preventDefault();
@@ -141,7 +186,7 @@ const AddNewListing = () => {
   }
 
   useEffect(()=>{
-    if(listingInfo.carImages.length>0){
+    if(listingInfo.carImages.length>0 && !fromEdit){
     saveData()
     }
   },[listingInfo.carImages])
@@ -246,7 +291,7 @@ const AddNewListing = () => {
           <div className="col-span-2">
             <ImageComponent removeAllImage={removeAllImage} getAllImages={getAllImages} />
           </div>
-          <button type="submit" className="bg-black mt-2 md:mt-0 text-white hover:bg-slate-800 hover:shadow-xl rounded p-2">{loader?"Submiting..":"submit"}</button>
+          <button type="submit" className="bg-black mt-2 md:mt-0 text-white hover:bg-slate-800 hover:shadow-xl rounded p-2">{loader?"Submiting..":fromEdit?"upadte":"submit"}</button>
         </div>
       </form>
     </div>

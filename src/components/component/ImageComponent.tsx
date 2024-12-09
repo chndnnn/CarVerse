@@ -4,8 +4,7 @@ import { MdCancel } from "react-icons/md";
 const ImageComponent = ({ getAllImages,removeAllImage }: { getAllImages:any,removeAllImage:boolean })=>{
 
     const [images,setImages] = useState<File[]>([]);
-   
-   console.log(removeAllImage)
+    
     useEffect(()=>{
         if(removeAllImage == true){
             setImages([])
