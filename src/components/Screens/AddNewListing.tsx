@@ -101,7 +101,6 @@ const AddNewListing = () => {
     const existingCar = await db
     .select()
     .from(carListing).where(eq(carListing.id,id))
-    console.log(existingCar[0])
     setListingInfo({
       make: existingCar[0].make,
       model: existingCar[0].model,
@@ -137,9 +136,21 @@ const AddNewListing = () => {
 
   async function onSubmitClick(e: any) {
     e.preventDefault();
-    await ontestButtonCLick();
+    if(!fromEdit){
+      await ontestButtonCLick();
+    }else{
+      await ontestButtonCLick()
+    }
   }
-
+  
+  async function updateData(){
+    const { vin, ...dataToUpdate } = listingInfo;
+    await db
+        .update(carListing)
+        .set(dataToUpdate) // Update all other fields except `vin`
+        .where(carListing.vin === vin); // Condition to match the car by VIN
+      console.log("Data updated successfully!");
+  }
   async function saveData(){
     setLoader(true)
     try {
@@ -188,6 +199,8 @@ const AddNewListing = () => {
   useEffect(()=>{
     if(listingInfo.carImages.length>0 && !fromEdit){
     saveData()
+    }else{
+     // updateData()
     }
   },[listingInfo.carImages])
 
@@ -225,7 +238,7 @@ const AddNewListing = () => {
   return (
     <div>
       <Nav />
-      <h2 className="text-2xl font-bold text-center py-4">Add New Listing</h2>
+      <h2 className="text-2xl font-bold text-center py-4">{fromEdit?"Update Listing":"Add New Listing"}</h2>
       <form onSubmit={(e) => { onSubmitClick(e) }}>
         <div className="border border-solid w-[90%] mx-auto md:grid md:grid-cols-2 gap-2 p-5 rounded mb-10 shadow-xl">
           <h2 className="col-span-2 text-xl font-bold">Car Details</h2>
@@ -289,7 +302,7 @@ const AddNewListing = () => {
           </div>
           <Separator className="col-span-2 border-1 bg-black" />
           <div className="col-span-2">
-            <ImageComponent removeAllImage={removeAllImage} getAllImages={getAllImages} />
+            <ImageComponent removeAllImage={removeAllImage} getAllImages={getAllImages} existingImages={listingInfo.carImages}/>
           </div>
           <button type="submit" className="bg-black mt-2 md:mt-0 text-white hover:bg-slate-800 hover:shadow-xl rounded p-2">{loader?"Submiting..":fromEdit?"upadte":"submit"}</button>
         </div>
