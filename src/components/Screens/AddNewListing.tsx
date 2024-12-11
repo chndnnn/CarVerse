@@ -58,6 +58,7 @@ const AddNewListing = () => {
   const[loader,setLoader] = useState(false)
   const [removeAllImage,setRemoveAllImage]=useState(false)
   const location = useLocation();
+  const [updateClicked,setUpdateClicked] = useState(false)
   const { fromEdit , id} = location.state || {};
 
   const [listingInfo, setListingInfo] = useState<ListingInfo>({
@@ -136,21 +137,19 @@ const AddNewListing = () => {
 
   async function onSubmitClick(e: any) {
     e.preventDefault();
-    if(!fromEdit){
-      await ontestButtonCLick();
-    }else{
-      await ontestButtonCLick()
-    }
+    setUpdateClicked(true)
+    await ontestButtonCLick();    
   }
   
   async function updateData(){
     const { vin, ...dataToUpdate } = listingInfo;
     await db
-        .update(carListing)
-        .set(dataToUpdate) // Update all other fields except `vin`
-        .where(carListing.vin === vin); // Condition to match the car by VIN
+    .update(carListing)
+    .set(dataToUpdate) // Ensure this includes the updated carImages
+    .where(eq(carListing.vin, vin));  // Condition to match the car by VIN
       console.log("Data updated successfully!");
   }
+
   async function saveData(){
     setLoader(true)
     try {
@@ -198,9 +197,11 @@ const AddNewListing = () => {
 
   useEffect(()=>{
     if(listingInfo.carImages.length>0 && !fromEdit){
-    saveData()
-    }else{
-     // updateData()
+       saveData()
+    }else if(listingInfo.carImages.length>0 && fromEdit){
+      if(updateClicked){
+        updateData()
+      }   
     }
   },[listingInfo.carImages])
 
