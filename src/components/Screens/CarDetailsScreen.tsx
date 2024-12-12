@@ -15,6 +15,7 @@ import FinanceCalculator from "../component/FinanceCalculator";
 import OwnerDetails from "../component/OwnerDetails";
 import MostSearchedCar from "../component/MostSearchedCar";
 import Footer from "../component/Footer";
+import Features from "../component/Features";
 
 const CarDetailsScreen = ()=>{
     
@@ -24,7 +25,7 @@ const CarDetailsScreen = ()=>{
 
     useEffect(()=>{
         getData()
-        window.scrollTo({top:0,behavior:"smooth"})
+        // window.scrollTo({top:0,behavior:"smooth"})
     },[id])
 
     async function getData(){
@@ -65,6 +66,10 @@ const CarDetailsScreen = ()=>{
   <CarouselPrevious className="ml-[60px]"/>
   <CarouselNext className="mr-[60px]"/>
 </Carousel> 
+<div className="border shadow-lg rounded mt-2 p-5 break-words">
+    <h1 className="text-2xl font-bold mb-5">Description</h1>
+    <h1>To print the numbers in one line without newlines, you need to modify the console.log statement. By default, console.log prints each output on a new line. To print everything on the same line, you can use process.stdout.write in Node.js or set console.log to print a space instead of a newline.</h1>
+</div>
 
 <FinanceCalculator/>
 </div>
@@ -80,9 +85,13 @@ const CarDetailsScreen = ()=>{
        <CarDetailSpecifications carData={carData}/>
     </div>   
    </div>
+   <div className="rounded border w-full mt-4 h-full p-2 md:w-[80%] flex  shadow-lg">
+    <Features  carData={carData}/>
+    </div>
    <div className="rounded border w-full mt-4 h-full p-2 md:w-[80%] flex justify-center items-center shadow-lg">
     <OwnerDetails/>
     </div>
+
    
 </div>
             </div>
