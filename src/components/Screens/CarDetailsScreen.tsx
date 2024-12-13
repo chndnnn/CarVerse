@@ -25,7 +25,7 @@ const CarDetailsScreen = ()=>{
 
     useEffect(()=>{
         getData()
-        // window.scrollTo({top:0,behavior:"smooth"})
+        window.scrollTo({top:0,behavior:"smooth"})
     },[id])
 
     async function getData(){
@@ -43,7 +43,7 @@ const CarDetailsScreen = ()=>{
     return<>
     <Nav/>
     <div>
-        <div className="p-10">
+        <div className="p-10 border">
             <div className="p-2 ">
             <h1 className="font-bold text-3xl">{carData?.make}</h1>
             <p>{carData?.model}</p>
@@ -54,8 +54,8 @@ const CarDetailsScreen = ()=>{
                 <div className="flex justify-center items-center bg-blue-100 text-blue-500 font-semibold rounded-full gap-2 p-2"><GiGearStickPattern/>{carData?.transmission}</div>
                 <div className="flex justify-center items-center bg-blue-100 text-blue-500 font-semibold rounded-full gap-2 p-2"><LuFuel/>{carData?.fuelType}</div>
             </div>
-            <div className="mt-2 flex md:flex-row flex-col">
-                <div className="md:w-[60%] ">
+            <div className="mt-2 flex md:flex-row flex-col ">
+                <div className="md:w-[60%] flex flex-col justify-between">
             <Carousel className="border border-solid rounded overflow-hidden w-full shadow-lg h-[400px]">
   <CarouselContent>
     {carData?.carImages?.map((car,index)=>{
@@ -68,7 +68,7 @@ const CarDetailsScreen = ()=>{
 </Carousel> 
 <div className="border shadow-lg rounded mt-2 p-5 break-words">
     <h1 className="text-2xl font-bold mb-5">Description</h1>
-    <h1>To print the numbers in one line without newlines, you need to modify the console.log statement. By default, console.log prints each output on a new line. To print everything on the same line, you can use process.stdout.write in Node.js or set console.log to print a space instead of a newline.</h1>
+    <h1>{carData.description}</h1>
 </div>
 
 <FinanceCalculator/>
@@ -85,7 +85,7 @@ const CarDetailsScreen = ()=>{
        <CarDetailSpecifications carData={carData}/>
     </div>   
    </div>
-   <div className="rounded border w-full mt-4 h-full p-2 md:w-[80%] flex  shadow-lg">
+   <div className="rounded border w-full mt-4 h-full p-2 md:w-[80%] shadow-lg">
     <Features  carData={carData}/>
     </div>
    <div className="rounded border w-full mt-4 h-full p-2 md:w-[80%] flex justify-center items-center shadow-lg">

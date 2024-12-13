@@ -28,9 +28,10 @@ const Features:React.FC<FeaturesInterface> = ({carData})=>{
 
         setFeature(data)
     },[carData])
-    return <div className="w-full grid md:grid-cols-2 px-2 ">
+    return <div className="w-full md:grid md:grid-cols-2 px-2 ">
+        <h1 className="col-span-2 text-2xl font-bold mb-5">Features</h1>
           {Object.entries(feature).map(([key, value])=>{
-            if(value) return <div className="flex gap-1 items-center"><span><ImCheckboxChecked className="text-blue-500 rounded-full" /></span>{key}</div>      
+            if(value) return <div className="flex gap-1 items-center break-all px-1"><span><ImCheckboxChecked className="text-blue-500 rounded-full" /></span>{key}</div>      
           })}
     </div>
 }
