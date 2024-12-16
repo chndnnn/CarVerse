@@ -68,7 +68,7 @@ const CarDetailsScreen = ()=>{
 </Carousel> 
 <div className="border shadow-lg rounded mt-2 p-5 break-words">
     <h1 className="text-2xl font-bold mb-5">Description</h1>
-    <h1>{carData.description}</h1>
+    <h1>{carData?.description}</h1>
 </div>
 
 <FinanceCalculator/>
