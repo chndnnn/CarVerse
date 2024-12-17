@@ -9,6 +9,7 @@ import MyListing from './components/Screens/MyListing.tsx'
 import ProtectedComp from './Authentication/ProtectedComp.tsx'
 import AddNewListing from './components/Screens/AddNewListing.tsx'
 import CarDetailsScreen from './components/Screens/CarDetailsScreen.tsx'
+import SearchScreen from './components/Screens/Search.tsx'
 
 
 const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path:'/CarDetailsScreen/:id',
     element : <CarDetailsScreen/> 
+  },
+  {
+    path:'/SearchScreen',
+    element : <SearchScreen/> 
   },
   {
     path:'*',

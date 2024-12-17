@@ -3,8 +3,15 @@ import Category from "./Category"
 import MostSearchedCar from "./MostSearchedCar"
 import SectionComponent from './SectionComponent'
 import Footer from './Footer'
+import { useNavigate } from "react-router-dom"
 
 const Hero = ()=>{
+
+  const nav = useNavigate();
+
+  function onSearchClick(){
+    nav('SearchScreen')
+  }
     return<><div className="w-[100%] border bg-black md:h-48">
        <div className="flex flex-col justify-center items-center mt-10 md:mt-14 font-sans gap-y-5">
         <h2 className="md:text-lg text-xs text-white">Find car for sale and for rent near you</h2>
