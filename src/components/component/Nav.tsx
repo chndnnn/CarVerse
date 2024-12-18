@@ -28,7 +28,7 @@ return <>
         </div>
         <ul className="md:flex hidden gap-16 font-sans">
             <Link to="/"><li className="cursor-pointer hover:scale-105 hover:text-blue-600 font-semibold">Home</li></Link>
-            <li className="cursor-pointer hover:scale-105 hover:text-blue-600 font-semibold">Search</li>
+            <Link to="/SearchScreen"><li className="cursor-pointer hover:scale-105 hover:text-blue-600 font-semibold">Search</li></Link>
             <li className="cursor-pointer hover:scale-105 hover:text-blue-600 font-semibold">New</li>
             <li className="cursor-pointer hover:scale-105 hover:text-blue-600 font-semibold">Pre-Owned</li>
         </ul>
