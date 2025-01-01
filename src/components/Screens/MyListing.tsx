@@ -28,7 +28,7 @@ const MyListing = ()=>{
     return <div>
         <Nav/>
         <div className="flex justify-between p-10">
-            <h2 className="text-2xl">My Listing ({cardata.length})</h2>
+            <h2 className="text-2xl font-semibold">My Listing ({cardata.length})</h2>
            <Link to="/AddLsiting"> <button className="bg-blue-200 p-2 rounded hover:bg-blue-500 font-bold">+ Add New Listing</button></Link>
         </div>
         <div className="grid md:grid-cols-4">
