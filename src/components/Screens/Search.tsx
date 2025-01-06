@@ -1,8 +1,14 @@
+import { useLocation } from "react-router-dom"
 import MostSearchedCar from "../component/MostSearchedCar"
 import Nav from "../component/Nav"
 import SelectCar from "../component/SelectCar"
+import { useEffect } from "react"
 
 const SearchScreen = ()=>{
+   let location = useLocation()
+   useEffect(()=>{
+    console.log(location.state)
+   },[location.state])
    return(
     <div>
         <Nav/>
